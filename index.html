@@ -1,7 +1,6 @@
 <div id="app"></div>
 
 <script>
-  
   function chunkArrayInGroups(arr, size) {
     return arr.reduce(function (p, c) {
       if (p[p.length - 1].length < size) {
@@ -43,12 +42,12 @@
     var isPalindrome = str.split('').reverse().join('').replace(/[^0-9a-z]/g, "");
     var strReplace = str.replace(/[^0-9a-z]/g, "");
     if (isPalindrome === strReplace) {
-      console.log("isPalindrome",isPalindrome);
-      console.log("str",strReplace);
+      console.log("isPalindrome", isPalindrome);
+      console.log("str", strReplace);
       return true;
     }
-    console.log("isPalindrome",isPalindrome);
-    console.log("str",strReplace);
+    console.log("isPalindrome", isPalindrome);
+    console.log("str", strReplace);
     return false;
   }
 
@@ -57,35 +56,58 @@
   // console.log(palindrome("eye"));
   // console.log(palindrome("_eye"));
 
-// var strings = ['rodrigo','wagner','adriano'];
+  // var strings = ['rodrigo','wagner','adriano'];
 
-// strings.map(function(person, i){
-//   return console.log(person, i); 
-// });
+  // strings.map(function(person, i){
+  //   return console.log(person, i); 
+  // });
 
 
-var scope = function(){
+  var scope = (function () {
 
-  var options = {
-    color:"red",
-    name:"rodrigo",
-    width: "10px",
-    height: "10px"
-  }
+    var userConfig = {};
 
-  function createObject(){
-    var el = document.createElement('div');
-    el.style.cssText = "width:"+ options.width +";height:"+ options.height +";background-color:"+ options.color +"";
-    document.body.appendChild(el);
-  }
+    var config = {
+      target: "body",
+      color: "red",
+      content: "rodrigo",
+      width: "10px",
+      height: "10px"
+    }
 
-  return{
-    createObject:createObject
-  }
+    var fn = {
+      mergeObjects: function (obj1, obj2) { // faz o update das configs nativas pelas do user ou vice-versa
+        var result = {}, name;
+        for (name in obj1) result[name] = obj1[name];
+        for (name in obj2) result[name] = obj2[name];
+        return result;
+      }
+    }
 
-}();
+    function createObject() {
+      var el = document.createElement('div');
+      var destCreate = document.querySelector(config.target);
+      el.style.cssText = "width:" + config.width + ";height:" + config.height + ";background-color:" + config.color + "";
+      destCreate.appendChild(el);
+    }
 
-scope.createObject();
+    function init() {
+      if (this.userConfig) { config = fn.mergeObjects(config, this.userConfig) }; //altera as configurações
+      createObject();
+    }
 
+    return {
+      userConfig: userConfig,
+      init: init
+    }
+
+  })();
+
+  scope.userConfig = {
+    target: "#app",
+    color: "green"
+  };
+
+  scope.init();
 
 </script>
