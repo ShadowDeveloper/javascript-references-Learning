@@ -1,0 +1,91 @@
+<div id="app"></div>
+
+<script>
+  
+  function chunkArrayInGroups(arr, size) {
+    return arr.reduce(function (p, c) {
+      if (p[p.length - 1].length < size) {
+        p[p.length - 1].push(c);
+      }
+      else {
+        p.push([c]);
+      }
+      return p;
+    }, [[]])
+  }
+
+  console.log(chunkArrayInGroups(["a", "b", "c", "d", "c", "d", "c"], 2));
+
+  function concatObj(obj) {
+    var elem = document.getElementById('app').innerHTML;
+    return elem.join("");
+  }
+
+  // console.log(concatObj("a"));
+
+
+  function reverseString(str) {
+    return str.split('').reverse().join('');
+  }
+  // console.log(reverseString("hello"));
+
+
+  function factorialize(num) {
+    var aux = 1;
+    for (var i = 0; i < num; i++) {
+      aux = (i + 1) * aux;
+    }
+    return aux;
+  }
+  // console.log(factorialize(5));
+
+  function palindrome(str) {
+    var isPalindrome = str.split('').reverse().join('').replace(/[^0-9a-z]/g, "");
+    var strReplace = str.replace(/[^0-9a-z]/g, "");
+    if (isPalindrome === strReplace) {
+      console.log("isPalindrome",isPalindrome);
+      console.log("str",strReplace);
+      return true;
+    }
+    console.log("isPalindrome",isPalindrome);
+    console.log("str",strReplace);
+    return false;
+  }
+
+  // console.log(palindrome("A man, a plan, a canal. Panama"));
+  // console.log(palindrome("0_0 (: /-\ :) 0-0"));
+  // console.log(palindrome("eye"));
+  // console.log(palindrome("_eye"));
+
+// var strings = ['rodrigo','wagner','adriano'];
+
+// strings.map(function(person, i){
+//   return console.log(person, i); 
+// });
+
+
+var scope = function(){
+
+  var options = {
+    color:"red",
+    name:"rodrigo",
+    width: "10px",
+    height: "10px"
+  }
+
+  function createObject(){
+    var el = document.createElement('div');
+    el.style.cssText = "width:"+ options.width +";height:"+ options.height +";background-color:"+ options.color +"";
+    document.body.appendChild(el);
+  }
+
+  return{
+    createObject:createObject
+  }
+
+}();
+
+scope.createObject();
+
+
+</script>
