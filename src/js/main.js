@@ -1,3 +1,16 @@
+// function concatObj(obj) {
+//   var elem = document.getElementById('app').innerHTML;
+//   return elem.join("");
+// }
+
+// concatObj("a");
+
+
+// function reverseString(str) {
+//   return str.split('').reverse().join('');
+// }
+// reverseString("hello");
+
 function getInsertFuncName(elem,func) {
    var destName = document.querySelector(elem + " .codePanel-header > h1");
   //  var funcName = arguments.callee.toString(); // Get the this/current/own function NAMESPACE
@@ -22,24 +35,8 @@ function chunkArrayInGroups(arr, size) {
     }
     return p;
   }, [[]]);
-}
-
+};
 console.log(chunkArrayInGroups(["a", "b", "c", "d", "c", "d", "c"], 2));
-
-
-// function concatObj(obj) {
-//   var elem = document.getElementById('app').innerHTML;
-//   return elem.join("");
-// }
-
-// concatObj("a");
-
-
-// function reverseString(str) {
-//   return str.split('').reverse().join('');
-// }
-// reverseString("hello");
-
 
 function factorialize(num) {
   var aux = 1;
