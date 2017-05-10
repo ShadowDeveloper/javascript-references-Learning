@@ -134,15 +134,14 @@ scope.init();
 
 var time = (function () {
 
-  var d = new Date();
-  var t = d.toLocaleTimeString();
-
   function timer() {
+    var d = new Date();
+    var t = d.toLocaleTimeString();
     fnInnerReturned('#showTime .codePanel-body', t);
   }
 
   function initTimeCount() {
-    fnInnerReturned('#showTime .codePanel-header', "Timer");
+    fnInnerReturned('#showTime .codePanel-header h1', "Function TimeCount");
     setInterval(function () { timer() }, 1000);
   }
 
@@ -150,7 +149,7 @@ var time = (function () {
     initTimeCount: initTimeCount
   }
 
-})()
+})();
 
 time.initTimeCount();
 
