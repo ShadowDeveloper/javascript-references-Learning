@@ -129,3 +129,27 @@ scope.userConfig = {
 };
 
 scope.init();
+
+
+
+var time = (function(){
+
+  function timer(){
+    var d = new Date();
+    var t = d.toLocaleTimeString();
+    fnInnerReturned('#showTime .codePanel-body', t);
+  }
+
+  function initTimeCount(){
+    fnInnerReturned('#showTime .codePanel-header', "Timer");
+    setInterval(function(){ timer() }, 1000);  
+  }
+
+  return{
+    initTimeCount:initTimeCount
+  }
+
+})()
+
+time.initTimeCount();
+
