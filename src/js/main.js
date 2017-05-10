@@ -11,16 +11,16 @@
 // }
 // reverseString("hello");
 
-function getInsertFuncName(elem,func) {
-   var destName = document.querySelector(elem + " .codePanel-header > h1");
+function getInsertFuncName(elem, func) {
+  var destName = document.querySelector(elem + " .codePanel-header > h1");
   //  var funcName = arguments.callee.toString(); // Get the this/current/own function NAMESPACE
-   var funcName = func.toString();
-   funcName = funcName.substr('function '.length);
-   funcName = funcName.substr(0, funcName.indexOf('('));
-   destName.innerHTML = "Function " + funcName;
+  var funcName = func.toString();
+  funcName = funcName.substr('function '.length);
+  funcName = funcName.substr(0, funcName.indexOf('('));
+  destName.innerHTML = "Function " + funcName;
 }
 
-function fnInnerReturned(param1,param2){
+function fnInnerReturned(param1, param2) {
   var destInner = document.querySelector(param1);
   destInner.innerHTML = param2;
 }
@@ -43,7 +43,7 @@ function factorialize(num) {
   for (var i = 0; i < num; i++) {
     aux = (i + 1) * aux;
   }
-  getInsertFuncName('#factorialize',arguments.callee);
+  getInsertFuncName('#factorialize', arguments.callee);
   return aux;
 }
 fnInnerReturned('#factorialize .codePanel-body', factorialize(5));
@@ -51,7 +51,7 @@ fnInnerReturned('#factorialize .codePanel-body', factorialize(5));
 function palindrome(str) {
   var isPalindrome = str.split('').reverse().join('').replace(/[^0-9a-z]/g, "");
   var strReplace = str.replace(/[^0-9a-z]/g, "");
-  getInsertFuncName('#palindrome',arguments.callee);
+  getInsertFuncName('#palindrome', arguments.callee);
   if (isPalindrome === strReplace) {
     console.log("isPalindrome", isPalindrome);
     console.log("str", strReplace);
@@ -99,8 +99,8 @@ var scope = (function () {
   function createObject() {
     var el = document.createElement('div');
     var elemToCreate = document.querySelector(config.target);
-      el.style.cssText = "width:" + config.width + ";height:" + config.height + ";background-color:" + config.color + "";
-      el.textContent = config.content;
+    el.style.cssText = "width:" + config.width + ";height:" + config.height + ";background-color:" + config.color + "";
+    el.textContent = config.content;
     if (elemToCreate && typeof elemToCreate != "undefined" && elemToCreate != null) {
       elemToCreate.appendChild(el);
     }
@@ -132,21 +132,22 @@ scope.init();
 
 
 
-var time = (function(){
+var time = (function () {
 
-  function timer(){
-    var d = new Date();
-    var t = d.toLocaleTimeString();
+  var d = new Date();
+  var t = d.toLocaleTimeString();
+
+  function timer() {
     fnInnerReturned('#showTime .codePanel-body', t);
   }
 
-  function initTimeCount(){
+  function initTimeCount() {
     fnInnerReturned('#showTime .codePanel-header', "Timer");
-    setInterval(function(){ timer() }, 1000);  
+    setInterval(function () { timer() }, 1000);
   }
 
-  return{
-    initTimeCount:initTimeCount
+  return {
+    initTimeCount: initTimeCount
   }
 
 })()
